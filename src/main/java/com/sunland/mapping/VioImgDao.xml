@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunland.dao.IVioImgDao">
+    <resultMap id="BaseResultMap" type="com.sunland.pojo.VioImg">
+        <id column="PID" jdbcType="DECIMAL" property="pid"/>
+        <result column="VIOID" jdbcType="DECIMAL" property="vioid"/>
+        <result column="INSERTTIME" jdbcType="TIMESTAMP" property="inserttime"/>
+        <result column="IMGINDEX" jdbcType="DECIMAL" property="imgindex"/>
+        <result column="JLLX" jdbcType="CHAR" property="jllx"/>
+        <result column="UPDATETIME" jdbcType="TIMESTAMP" property="updatetime"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sunland.pojo.VioImg">
+        <result column="CONTENT" jdbcType="BLOB" property="content"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    PID, VIOID, INSERTTIME, IMGINDEX, JLLX, UPDATETIME
+  </sql>
+    <sql id="Blob_Column_List">
+    CONTENT
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from VIO_IMG
+        where PID = #{pid,jdbcType=DECIMAL}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from VIO_IMG
+    where PID = #{pid,jdbcType=DECIMAL}
+  </delete>
+    <insert id="insert" parameterType="com.sunland.pojo.VioImg">
+    insert into VIO_IMG (PID, VIOID, INSERTTIME, 
+      IMGINDEX, JLLX, UPDATETIME, 
+      CONTENT)
+    values (vioimg_pid_seq.nextval, #{vioid,jdbcType=DECIMAL}, #{inserttime,jdbcType=TIMESTAMP},
+      #{imgindex,jdbcType=DECIMAL}, #{jllx,jdbcType=CHAR}, #{updatetime,jdbcType=TIMESTAMP},
+      #{content,jdbcType=BLOB})
+  </insert>
+    <insert id="insertSelective" parameterType="com.sunland.pojo.VioImg">
+        insert into VIO_IMG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <!--<if test="pid != null">-->
+            <!--PID,-->
+            <!--</if>-->
+            PID,
+            <if test="vioid != null">
+                VIOID,
+            </if>
+            <if test="inserttime != null">
+                INSERTTIME,
+            </if>
+            <if test="imgindex != null">
+                IMGINDEX,
+            </if>
+            <if test="jllx != null">
+                JLLX,
+            </if>
+            <if test="updatetime != null">
+                UPDATETIME,
+            </if>
+            <if test="content != null">
+                CONTENT,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <!--<if test="pid != null">-->
+            <!--#{pid,jdbcType=DECIMAL},-->
+            <!--</if>-->
+            vioimg_pid_seq.nextval,
+            <if test="vioid != null">
+                #{vioid,jdbcType=DECIMAL},
+            </if>
+            <if test="inserttime != null">
+                #{inserttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="imgindex != null">
+                #{imgindex,jdbcType=DECIMAL},
+            </if>
+            <if test="jllx != null">
+                #{jllx,jdbcType=CHAR},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=BLOB},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sunland.pojo.VioImg">
+        update VIO_IMG
+        <set>
+            <if test="vioid != null">
+                VIOID = #{vioid,jdbcType=DECIMAL},
+            </if>
+            <if test="inserttime != null">
+                INSERTTIME = #{inserttime,jdbcType=DATE},
+            </if>
+            <if test="imgindex != null">
+                IMGINDEX = #{imgindex,jdbcType=DECIMAL},
+            </if>
+            <if test="jllx != null">
+                JLLX = #{jllx,jdbcType=CHAR},
+            </if>
+            <if test="updatetime != null">
+                UPDATETIME = #{updatetime,jdbcType=DATE},
+            </if>
+            <if test="content != null">
+                CONTENT = #{content,jdbcType=BLOB},
+            </if>
+        </set>
+        where PID = #{pid,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sunland.pojo.VioImg">
+    update VIO_IMG
+    set VIOID = #{vioid,jdbcType=DECIMAL},
+      INSERTTIME = #{inserttime,jdbcType=DATE},
+      IMGINDEX = #{imgindex,jdbcType=DECIMAL},
+      JLLX = #{jllx,jdbcType=CHAR},
+      UPDATETIME = #{updatetime,jdbcType=DATE},
+      CONTENT = #{content,jdbcType=BLOB}
+    where PID = #{pid,jdbcType=DECIMAL}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.sunland.pojo.VioImg">
+    update VIO_IMG
+    set VIOID = #{vioid,jdbcType=DECIMAL},
+      INSERTTIME = #{inserttime,jdbcType=DATE},
+      IMGINDEX = #{imgindex,jdbcType=DECIMAL},
+      JLLX = #{jllx,jdbcType=CHAR},
+      UPDATETIME = #{updatetime,jdbcType=DATE}
+    where PID = #{pid,jdbcType=DECIMAL}
+  </update>
+</mapper>

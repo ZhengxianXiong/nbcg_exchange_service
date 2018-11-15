@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunland.dao.IVioDao">
+    <resultMap id="BaseResultMap" type="com.sunland.pojo.Vio">
+        <id column="VIOID" jdbcType="DECIMAL" property="vioid"/>
+        <result column="AJBH" jdbcType="VARCHAR" property="ajbh"/>
+        <result column="BILLNO" jdbcType="VARCHAR" property="billno"/>
+        <result column="JDSBH" jdbcType="VARCHAR" property="jdsbh"/>
+        <result column="HPZL" jdbcType="VARCHAR" property="hpzl"/>
+        <result column="HPHM" jdbcType="VARCHAR" property="hphm"/>
+        <result column="WFSJ" jdbcType="DATE" property="wfsj"/>
+        <result column="WFXW" jdbcType="VARCHAR" property="wfxw"/>
+        <result column="FKJE" jdbcType="DECIMAL" property="fkje"/>
+        <result column="CJMJ1" jdbcType="VARCHAR" property="cjmj1"/>
+        <result column="CJMJ2" jdbcType="VARCHAR" property="cjmj2"/>
+        <result column="DEPTID" jdbcType="DECIMAL" property="deptid"/>
+        <result column="PUNISHDEPTID" jdbcType="DECIMAL" property="punishdeptid"/>
+        <result column="MONEYREGIONCODE" jdbcType="VARCHAR" property="moneyregioncode"/>
+        <result column="REGIONCODE" jdbcType="VARCHAR" property="regioncode"/>
+        <result column="PUNISHREGIONCODE" jdbcType="VARCHAR" property="punishregioncode"/>
+        <result column="LOCKSTATE" jdbcType="VARCHAR" property="lockstate"/>
+        <result column="LOCKISINTB" jdbcType="VARCHAR" property="lockisintb"/>
+        <result column="LOCKNUM" jdbcType="DECIMAL" property="locknum"/>
+        <result column="UNLOCKSTATE" jdbcType="VARCHAR" property="unlockstate"/>
+        <result column="UNLOCKISINTB" jdbcType="VARCHAR" property="unlockisintb"/>
+        <result column="UNLOCKNUM" jdbcType="DECIMAL" property="unlocknum"/>
+        <result column="FLOWCODE" jdbcType="VARCHAR" property="flowcode"/>
+        <result column="SFJA" jdbcType="VARCHAR" property="sfja"/>
+        <result column="SJLY" jdbcType="VARCHAR" property="sjly"/>
+        <result column="JSZH" jdbcType="VARCHAR" property="jszh"/>
+        <result column="ZNJ" jdbcType="DECIMAL" property="znj"/>
+        <result column="JKFS" jdbcType="VARCHAR" property="jkfs"/>
+        <result column="JKRQ" jdbcType="DATE" property="jkrq"/>
+        <result column="CLR" jdbcType="VARCHAR" property="clr"/>
+        <result column="CLSJ" jdbcType="DATE" property="clsj"/>
+        <result column="CLBJ" jdbcType="VARCHAR" property="clbj"/>
+        <result column="JKBJ" jdbcType="VARCHAR" property="jkbj"/>
+        <result column="JMZNJBJ" jdbcType="VARCHAR" property="jmznjbj"/>
+        <result column="UPDATETIME" jdbcType="DATE" property="updatetime"/>
+        <result column="JAR" jdbcType="VARCHAR" property="jar"/>
+        <result column="JASJ" jdbcType="DATE" property="jasj"/>
+        <result column="CLFS" jdbcType="CHAR" property="clfs"/>
+        <result column="JLLX" jdbcType="CHAR" property="jllx"/>
+        <result column="DELETETIME" jdbcType="DATE" property="deletetime"/>
+        <result column="JKQD" jdbcType="VARCHAR" property="jkqd"/>
+        <result column="TZBJ" jdbcType="VARCHAR" property="tzbj"/>
+        <result column="TZRQ" jdbcType="DATE" property="tzrq"/>
+        <result column="ROADCODE" jdbcType="VARCHAR" property="roadcode"/>
+        <result column="ROADNAME" jdbcType="VARCHAR" property="roadname"/>
+        <result column="LRR" jdbcType="VARCHAR" property="lrr"/>
+        <result column="LRSJ" jdbcType="DATE" property="lrsj"/>
+        <result column="BZ" jdbcType="VARCHAR" property="bz"/>
+        <result column="LOCKERROR" jdbcType="VARCHAR" property="lockerror"/>
+        <result column="LOCKTIME" jdbcType="DATE" property="locktime"/>
+        <result column="UNLOCKERROR" jdbcType="VARCHAR" property="unlockerror"/>
+        <result column="UNLOCKTIME" jdbcType="DATE" property="unlocktime"/>
+        <result column="DSR" jdbcType="VARCHAR" property="dsr"/>
+        <result column="LXDH" jdbcType="VARCHAR" property="lxdh"/>
+        <result column="XXDZ" jdbcType="VARCHAR" property="xxdz"/>
+        <result column="DSRXXDZ" jdbcType="VARCHAR" property="dsrxxdz"/>
+        <result column="LOCKZDCS" jdbcType="DECIMAL" property="lockzdcs"/>
+        <result column="UNLOCKZDCS" jdbcType="DECIMAL" property="unlockzdcs"/>
+        <result column="JAFS" jdbcType="VARCHAR" property="jafs"/>
+        <result column="INVOICEPID" jdbcType="VARCHAR" property="invoicepid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    VIOID, AJBH, BILLNO, JDSBH, HPZL, HPHM, WFSJ, WFXW, FKJE, CJMJ1, CJMJ2, DEPTID, PUNISHDEPTID, 
+    MONEYREGIONCODE, REGIONCODE, PUNISHREGIONCODE, LOCKSTATE, LOCKISINTB, LOCKNUM, UNLOCKSTATE, 
+    UNLOCKISINTB, UNLOCKNUM, FLOWCODE, SFJA, SJLY, JSZH, ZNJ, JKFS, JKRQ, CLR, CLSJ, 
+    CLBJ, JKBJ, JMZNJBJ, UPDATETIME, JAR, JASJ, CLFS, JLLX, DELETETIME, JKQD, TZBJ, TZRQ, 
+    ROADCODE, ROADNAME, LRR, LRSJ, BZ, LOCKERROR, LOCKTIME, UNLOCKERROR, UNLOCKTIME, 
+    DSR, LXDH, XXDZ, DSRXXDZ, LOCKZDCS, UNLOCKZDCS, JAFS, INVOICEPID
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from VIO
+        where VIOID = #{vioid,jdbcType=DECIMAL}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from VIO
+    where VIOID = #{vioid,jdbcType=DECIMAL}
+  </delete>
+    <insert id="insert" parameterType="com.sunland.pojo.Vio">
+    insert into VIO (VIOID, AJBH, BILLNO, 
+      JDSBH, HPZL, HPHM, 
+      WFSJ, WFXW, FKJE, CJMJ1, 
+      CJMJ2, DEPTID, PUNISHDEPTID, 
+      MONEYREGIONCODE, REGIONCODE, PUNISHREGIONCODE, 
+      LOCKSTATE, LOCKISINTB, LOCKNUM, 
+      UNLOCKSTATE, UNLOCKISINTB, UNLOCKNUM, 
+      FLOWCODE, SFJA, SJLY, 
+      JSZH, ZNJ, JKFS, JKRQ, 
+      CLR, CLSJ, CLBJ, JKBJ, 
+      JMZNJBJ, UPDATETIME, JAR, 
+      JASJ, CLFS, JLLX, DELETETIME, 
+      JKQD, TZBJ, TZRQ, ROADCODE, 
+      ROADNAME, LRR, LRSJ, BZ, 
+      LOCKERROR, LOCKTIME, UNLOCKERROR, 
+      UNLOCKTIME, DSR, LXDH, 
+      XXDZ, DSRXXDZ, LOCKZDCS, 
+      UNLOCKZDCS, JAFS, INVOICEPID
+      )
+    values (vioid_seq.nextval, #{ajbh,jdbcType=VARCHAR}, #{billno,jdbcType=VARCHAR},
+      #{jdsbh,jdbcType=VARCHAR}, #{hpzl,jdbcType=VARCHAR}, #{hphm,jdbcType=VARCHAR}, 
+      #{wfsj,jdbcType=DATE}, #{wfxw,jdbcType=VARCHAR}, #{fkje,jdbcType=DECIMAL}, #{cjmj1,jdbcType=VARCHAR}, 
+      #{cjmj2,jdbcType=VARCHAR}, #{deptid,jdbcType=DECIMAL}, #{punishdeptid,jdbcType=DECIMAL}, 
+      #{moneyregioncode,jdbcType=VARCHAR}, #{regioncode,jdbcType=VARCHAR}, #{punishregioncode,jdbcType=VARCHAR}, 
+      #{lockstate,jdbcType=VARCHAR}, #{lockisintb,jdbcType=VARCHAR}, #{locknum,jdbcType=DECIMAL}, 
+      #{unlockstate,jdbcType=VARCHAR}, #{unlockisintb,jdbcType=VARCHAR}, #{unlocknum,jdbcType=DECIMAL}, 
+      #{flowcode,jdbcType=VARCHAR}, #{sfja,jdbcType=VARCHAR}, #{sjly,jdbcType=VARCHAR}, 
+      #{jszh,jdbcType=VARCHAR}, #{znj,jdbcType=DECIMAL}, #{jkfs,jdbcType=VARCHAR}, #{jkrq,jdbcType=DATE}, 
+      #{clr,jdbcType=VARCHAR}, #{clsj,jdbcType=DATE}, #{clbj,jdbcType=VARCHAR}, #{jkbj,jdbcType=VARCHAR}, 
+      #{jmznjbj,jdbcType=VARCHAR}, #{updatetime,jdbcType=DATE}, #{jar,jdbcType=VARCHAR}, 
+      #{jasj,jdbcType=DATE}, #{clfs,jdbcType=CHAR}, #{jllx,jdbcType=CHAR}, #{deletetime,jdbcType=DATE}, 
+      #{jkqd,jdbcType=VARCHAR}, #{tzbj,jdbcType=VARCHAR}, #{tzrq,jdbcType=DATE}, #{roadcode,jdbcType=VARCHAR}, 
+      #{roadname,jdbcType=VARCHAR}, #{lrr,jdbcType=VARCHAR}, #{lrsj,jdbcType=DATE}, #{bz,jdbcType=VARCHAR}, 
+      #{lockerror,jdbcType=VARCHAR}, #{locktime,jdbcType=DATE}, #{unlockerror,jdbcType=VARCHAR}, 
+      #{unlocktime,jdbcType=DATE}, #{dsr,jdbcType=VARCHAR}, #{lxdh,jdbcType=VARCHAR}, 
+      #{xxdz,jdbcType=VARCHAR}, #{dsrxxdz,jdbcType=VARCHAR}, #{lockzdcs,jdbcType=DECIMAL}, 
+      #{unlockzdcs,jdbcType=DECIMAL}, #{jafs,jdbcType=VARCHAR}, #{invoicepid,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.sunland.pojo.Vio">
+        insert into VIO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="vioid != null">
+                VIOID,
+            </if>
+            <if test="ajbh != null">
+                AJBH,
+            </if>
+            <if test="billno != null">
+                BILLNO,
+            </if>
+            <if test="jdsbh != null">
+                JDSBH,
+            </if>
+            <if test="hpzl != null">
+                HPZL,
+            </if>
+            <if test="hphm != null">
+                HPHM,
+            </if>
+            <if test="wfsj != null">
+                WFSJ,
+            </if>
+            <if test="wfxw != null">
+                WFXW,
+            </if>
+            <if test="fkje != null">
+                FKJE,
+            </if>
+            <if test="cjmj1 != null">
+                CJMJ1,
+            </if>
+            <if test="cjmj2 != null">
+                CJMJ2,
+            </if>
+            <if test="deptid != null">
+                DEPTID,
+            </if>
+            <if test="punishdeptid != null">
+                PUNISHDEPTID,
+            </if>
+            <if test="moneyregioncode != null">
+                MONEYREGIONCODE,
+            </if>
+            <if test="regioncode != null">
+                REGIONCODE,
+            </if>
+            <if test="punishregioncode != null">
+                PUNISHREGIONCODE,
+            </if>
+            <if test="lockstate != null">
+                LOCKSTATE,
+            </if>
+            <if test="lockisintb != null">
+                LOCKISINTB,
+            </if>
+            <if test="locknum != null">
+                LOCKNUM,
+            </if>
+            <if test="unlockstate != null">
+                UNLOCKSTATE,
+            </if>
+            <if test="unlockisintb != null">
+                UNLOCKISINTB,
+            </if>
+            <if test="unlocknum != null">
+                UNLOCKNUM,
+            </if>
+            <if test="flowcode != null">
+                FLOWCODE,
+            </if>
+            <if test="sfja != null">
+                SFJA,
+            </if>
+            <if test="sjly != null">
+                SJLY,
+            </if>
+            <if test="jszh != null">
+                JSZH,
+            </if>
+            <if test="znj != null">
+                ZNJ,
+            </if>
+            <if test="jkfs != null">
+                JKFS,
+            </if>
+            <if test="jkrq != null">
+                JKRQ,
+            </if>
+            <if test="clr != null">
+                CLR,
+            </if>
+            <if test="clsj != null">
+                CLSJ,
+            </if>
+            <if test="clbj != null">
+                CLBJ,
+            </if>
+            <if test="jkbj != null">
+                JKBJ,
+            </if>
+            <if test="jmznjbj != null">
+                JMZNJBJ,
+            </if>
+            <if test="updatetime != null">
+                UPDATETIME,
+            </if>
+            <if test="jar != null">
+                JAR,
+            </if>
+            <if test="jasj != null">
+                JASJ,
+            </if>
+            <if test="clfs != null">
+                CLFS,
+            </if>
+            <if test="jllx != null">
+                JLLX,
+            </if>
+            <if test="deletetime != null">
+                DELETETIME,
+            </if>
+            <if test="jkqd != null">
+                JKQD,
+            </if>
+            <if test="tzbj != null">
+                TZBJ,
+            </if>
+            <if test="tzrq != null">
+                TZRQ,
+            </if>
+            <if test="roadcode != null">
+                ROADCODE,
+            </if>
+            <if test="roadname != null">
+                ROADNAME,
+            </if>
+            <if test="lrr != null">
+                LRR,
+            </if>
+            <if test="lrsj != null">
+                LRSJ,
+            </if>
+            <if test="bz != null">
+                BZ,
+            </if>
+            <if test="lockerror != null">
+                LOCKERROR,
+            </if>
+            <if test="locktime != null">
+                LOCKTIME,
+            </if>
+            <if test="unlockerror != null">
+                UNLOCKERROR,
+            </if>
+            <if test="unlocktime != null">
+                UNLOCKTIME,
+            </if>
+            <if test="dsr != null">
+                DSR,
+            </if>
+            <if test="lxdh != null">
+                LXDH,
+            </if>
+            <if test="xxdz != null">
+                XXDZ,
+            </if>
+            <if test="dsrxxdz != null">
+                DSRXXDZ,
+            </if>
+            <if test="lockzdcs != null">
+                LOCKZDCS,
+            </if>
+            <if test="unlockzdcs != null">
+                UNLOCKZDCS,
+            </if>
+            <if test="jafs != null">
+                JAFS,
+            </if>
+            <if test="invoicepid != null">
+                INVOICEPID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="vioid != null">
+                #{vioid,jdbcType=DECIMAL},
+            </if>
+            <if test="ajbh != null">
+                #{ajbh,jdbcType=VARCHAR},
+            </if>
+            <if test="billno != null">
+                #{billno,jdbcType=VARCHAR},
+            </if>
+            <if test="jdsbh != null">
+                #{jdsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="hpzl != null">
+                #{hpzl,jdbcType=VARCHAR},
+            </if>
+            <if test="hphm != null">
+                #{hphm,jdbcType=VARCHAR},
+            </if>
+            <if test="wfsj != null">
+                #{wfsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="wfxw != null">
+                #{wfxw,jdbcType=VARCHAR},
+            </if>
+            <if test="fkje != null">
+                #{fkje,jdbcType=DECIMAL},
+            </if>
+            <if test="cjmj1 != null">
+                #{cjmj1,jdbcType=VARCHAR},
+            </if>
+            <if test="cjmj2 != null">
+                #{cjmj2,jdbcType=VARCHAR},
+            </if>
+            <if test="deptid != null">
+                #{deptid,jdbcType=DECIMAL},
+            </if>
+            <if test="punishdeptid != null">
+                #{punishdeptid,jdbcType=DECIMAL},
+            </if>
+            <if test="moneyregioncode != null">
+                #{moneyregioncode,jdbcType=VARCHAR},
+            </if>
+            <if test="regioncode != null">
+                #{regioncode,jdbcType=VARCHAR},
+            </if>
+            <if test="punishregioncode != null">
+                #{punishregioncode,jdbcType=VARCHAR},
+            </if>
+            <if test="lockstate != null">
+                #{lockstate,jdbcType=VARCHAR},
+            </if>
+            <if test="lockisintb != null">
+                #{lockisintb,jdbcType=VARCHAR},
+            </if>
+            <if test="locknum != null">
+                #{locknum,jdbcType=DECIMAL},
+            </if>
+            <if test="unlockstate != null">
+                #{unlockstate,jdbcType=VARCHAR},
+            </if>
+            <if test="unlockisintb != null">
+                #{unlockisintb,jdbcType=VARCHAR},
+            </if>
+            <if test="unlocknum != null">
+                #{unlocknum,jdbcType=DECIMAL},
+            </if>
+            <if test="flowcode != null">
+                #{flowcode,jdbcType=VARCHAR},
+            </if>
+            <if test="sfja != null">
+                #{sfja,jdbcType=VARCHAR},
+            </if>
+            <if test="sjly != null">
+                #{sjly,jdbcType=VARCHAR},
+            </if>
+            <if test="jszh != null">
+                #{jszh,jdbcType=VARCHAR},
+            </if>
+            <if test="znj != null">
+                #{znj,jdbcType=DECIMAL},
+            </if>
+            <if test="jkfs != null">
+                #{jkfs,jdbcType=VARCHAR},
+            </if>
+            <if test="jkrq != null">
+                #{jkrq,jdbcType=DATE},
+            </if>
+            <if test="clr != null">
+                #{clr,jdbcType=VARCHAR},
+            </if>
+            <if test="clsj != null">
+                #{clsj,jdbcType=DATE},
+            </if>
+            <if test="clbj != null">
+                #{clbj,jdbcType=VARCHAR},
+            </if>
+            <if test="jkbj != null">
+                #{jkbj,jdbcType=VARCHAR},
+            </if>
+            <if test="jmznjbj != null">
+                #{jmznjbj,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=DATE},
+            </if>
+            <if test="jar != null">
+                #{jar,jdbcType=VARCHAR},
+            </if>
+            <if test="jasj != null">
+                #{jasj,jdbcType=DATE},
+            </if>
+            <if test="clfs != null">
+                #{clfs,jdbcType=CHAR},
+            </if>
+            <if test="jllx != null">
+                #{jllx,jdbcType=CHAR},
+            </if>
+            <if test="deletetime != null">
+                #{deletetime,jdbcType=DATE},
+            </if>
+            <if test="jkqd != null">
+                #{jkqd,jdbcType=VARCHAR},
+            </if>
+            <if test="tzbj != null">
+                #{tzbj,jdbcType=VARCHAR},
+            </if>
+            <if test="tzrq != null">
+                #{tzrq,jdbcType=DATE},
+            </if>
+            <if test="roadcode != null">
+                #{roadcode,jdbcType=VARCHAR},
+            </if>
+            <if test="roadname != null">
+                #{roadname,jdbcType=VARCHAR},
+            </if>
+            <if test="lrr != null">
+                #{lrr,jdbcType=VARCHAR},
+            </if>
+            <if test="lrsj != null">
+                #{lrsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bz != null">
+                #{bz,jdbcType=VARCHAR},
+            </if>
+            <if test="lockerror != null">
+                #{lockerror,jdbcType=VARCHAR},
+            </if>
+            <if test="locktime != null">
+                #{locktime,jdbcType=DATE},
+            </if>
+            <if test="unlockerror != null">
+                #{unlockerror,jdbcType=VARCHAR},
+            </if>
+            <if test="unlocktime != null">
+                #{unlocktime,jdbcType=DATE},
+            </if>
+            <if test="dsr != null">
+                #{dsr,jdbcType=VARCHAR},
+            </if>
+            <if test="lxdh != null">
+                #{lxdh,jdbcType=VARCHAR},
+            </if>
+            <if test="xxdz != null">
+                #{xxdz,jdbcType=VARCHAR},
+            </if>
+            <if test="dsrxxdz != null">
+                #{dsrxxdz,jdbcType=VARCHAR},
+            </if>
+            <if test="lockzdcs != null">
+                #{lockzdcs,jdbcType=DECIMAL},
+            </if>
+            <if test="unlockzdcs != null">
+                #{unlockzdcs,jdbcType=DECIMAL},
+            </if>
+            <if test="jafs != null">
+                #{jafs,jdbcType=VARCHAR},
+            </if>
+            <if test="invoicepid != null">
+                #{invoicepid,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sunland.pojo.Vio">
+        update VIO
+        <set>
+            <if test="ajbh != null">
+                AJBH = #{ajbh,jdbcType=VARCHAR},
+            </if>
+            <if test="billno != null">
+                BILLNO = #{billno,jdbcType=VARCHAR},
+            </if>
+            <if test="jdsbh != null">
+                JDSBH = #{jdsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="hpzl != null">
+                HPZL = #{hpzl,jdbcType=VARCHAR},
+            </if>
+            <if test="hphm != null">
+                HPHM = #{hphm,jdbcType=VARCHAR},
+            </if>
+            <if test="wfsj != null">
+                WFSJ = #{wfsj,jdbcType=DATE},
+            </if>
+            <if test="wfxw != null">
+                WFXW = #{wfxw,jdbcType=VARCHAR},
+            </if>
+            <if test="fkje != null">
+                FKJE = #{fkje,jdbcType=DECIMAL},
+            </if>
+            <if test="cjmj1 != null">
+                CJMJ1 = #{cjmj1,jdbcType=VARCHAR},
+            </if>
+            <if test="cjmj2 != null">
+                CJMJ2 = #{cjmj2,jdbcType=VARCHAR},
+            </if>
+            <if test="deptid != null">
+                DEPTID = #{deptid,jdbcType=DECIMAL},
+            </if>
+            <if test="punishdeptid != null">
+                PUNISHDEPTID = #{punishdeptid,jdbcType=DECIMAL},
+            </if>
+            <if test="moneyregioncode != null">
+                MONEYREGIONCODE = #{moneyregioncode,jdbcType=VARCHAR},
+            </if>
+            <if test="regioncode != null">
+                REGIONCODE = #{regioncode,jdbcType=VARCHAR},
+            </if>
+            <if test="punishregioncode != null">
+                PUNISHREGIONCODE = #{punishregioncode,jdbcType=VARCHAR},
+            </if>
+            <if test="lockstate != null">
+                LOCKSTATE = #{lockstate,jdbcType=VARCHAR},
+            </if>
+            <if test="lockisintb != null">
+                LOCKISINTB = #{lockisintb,jdbcType=VARCHAR},
+            </if>
+            <if test="locknum != null">
+                LOCKNUM = #{locknum,jdbcType=DECIMAL},
+            </if>
+            <if test="unlockstate != null">
+                UNLOCKSTATE = #{unlockstate,jdbcType=VARCHAR},
+            </if>
+            <if test="unlockisintb != null">
+                UNLOCKISINTB = #{unlockisintb,jdbcType=VARCHAR},
+            </if>
+            <if test="unlocknum != null">
+                UNLOCKNUM = #{unlocknum,jdbcType=DECIMAL},
+            </if>
+            <if test="flowcode != null">
+                FLOWCODE = #{flowcode,jdbcType=VARCHAR},
+            </if>
+            <if test="sfja != null">
+                SFJA = #{sfja,jdbcType=VARCHAR},
+            </if>
+            <if test="sjly != null">
+                SJLY = #{sjly,jdbcType=VARCHAR},
+            </if>
+            <if test="jszh != null">
+                JSZH = #{jszh,jdbcType=VARCHAR},
+            </if>
+            <if test="znj != null">
+                ZNJ = #{znj,jdbcType=DECIMAL},
+            </if>
+            <if test="jkfs != null">
+                JKFS = #{jkfs,jdbcType=VARCHAR},
+            </if>
+            <if test="jkrq != null">
+                JKRQ = #{jkrq,jdbcType=DATE},
+            </if>
+            <if test="clr != null">
+                CLR = #{clr,jdbcType=VARCHAR},
+            </if>
+            <if test="clsj != null">
+                CLSJ = #{clsj,jdbcType=DATE},
+            </if>
+            <if test="clbj != null">
+                CLBJ = #{clbj,jdbcType=VARCHAR},
+            </if>
+            <if test="jkbj != null">
+                JKBJ = #{jkbj,jdbcType=VARCHAR},
+            </if>
+            <if test="jmznjbj != null">
+                JMZNJBJ = #{jmznjbj,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                UPDATETIME = #{updatetime,jdbcType=DATE},
+            </if>
+            <if test="jar != null">
+                JAR = #{jar,jdbcType=VARCHAR},
+            </if>
+            <if test="jasj != null">
+                JASJ = #{jasj,jdbcType=DATE},
+            </if>
+            <if test="clfs != null">
+                CLFS = #{clfs,jdbcType=CHAR},
+            </if>
+            <if test="jllx != null">
+                JLLX = #{jllx,jdbcType=CHAR},
+            </if>
+            <if test="deletetime != null">
+                DELETETIME = #{deletetime,jdbcType=DATE},
+            </if>
+            <if test="jkqd != null">
+                JKQD = #{jkqd,jdbcType=VARCHAR},
+            </if>
+            <if test="tzbj != null">
+                TZBJ = #{tzbj,jdbcType=VARCHAR},
+            </if>
+            <if test="tzrq != null">
+                TZRQ = #{tzrq,jdbcType=DATE},
+            </if>
+            <if test="roadcode != null">
+                ROADCODE = #{roadcode,jdbcType=VARCHAR},
+            </if>
+            <if test="roadname != null">
+                ROADNAME = #{roadname,jdbcType=VARCHAR},
+            </if>
+            <if test="lrr != null">
+                LRR = #{lrr,jdbcType=VARCHAR},
+            </if>
+            <if test="lrsj != null">
+                LRSJ = #{lrsj,jdbcType=DATE},
+            </if>
+            <if test="bz != null">
+                BZ = #{bz,jdbcType=VARCHAR},
+            </if>
+            <if test="lockerror != null">
+                LOCKERROR = #{lockerror,jdbcType=VARCHAR},
+            </if>
+            <if test="locktime != null">
+                LOCKTIME = #{locktime,jdbcType=DATE},
+            </if>
+            <if test="unlockerror != null">
+                UNLOCKERROR = #{unlockerror,jdbcType=VARCHAR},
+            </if>
+            <if test="unlocktime != null">
+                UNLOCKTIME = #{unlocktime,jdbcType=DATE},
+            </if>
+            <if test="dsr != null">
+                DSR = #{dsr,jdbcType=VARCHAR},
+            </if>
+            <if test="lxdh != null">
+                LXDH = #{lxdh,jdbcType=VARCHAR},
+            </if>
+            <if test="xxdz != null">
+                XXDZ = #{xxdz,jdbcType=VARCHAR},
+            </if>
+            <if test="dsrxxdz != null">
+                DSRXXDZ = #{dsrxxdz,jdbcType=VARCHAR},
+            </if>
+            <if test="lockzdcs != null">
+                LOCKZDCS = #{lockzdcs,jdbcType=DECIMAL},
+            </if>
+            <if test="unlockzdcs != null">
+                UNLOCKZDCS = #{unlockzdcs,jdbcType=DECIMAL},
+            </if>
+            <if test="jafs != null">
+                JAFS = #{jafs,jdbcType=VARCHAR},
+            </if>
+            <if test="invoicepid != null">
+                INVOICEPID = #{invoicepid,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where VIOID = #{vioid,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.sunland.pojo.Vio">
+    update VIO
+    set AJBH = #{ajbh,jdbcType=VARCHAR},
+      BILLNO = #{billno,jdbcType=VARCHAR},
+      JDSBH = #{jdsbh,jdbcType=VARCHAR},
+      HPZL = #{hpzl,jdbcType=VARCHAR},
+      HPHM = #{hphm,jdbcType=VARCHAR},
+      WFSJ = #{wfsj,jdbcType=DATE},
+      WFXW = #{wfxw,jdbcType=VARCHAR},
+      FKJE = #{fkje,jdbcType=DECIMAL},
+      CJMJ1 = #{cjmj1,jdbcType=VARCHAR},
+      CJMJ2 = #{cjmj2,jdbcType=VARCHAR},
+      DEPTID = #{deptid,jdbcType=DECIMAL},
+      PUNISHDEPTID = #{punishdeptid,jdbcType=DECIMAL},
+      MONEYREGIONCODE = #{moneyregioncode,jdbcType=VARCHAR},
+      REGIONCODE = #{regioncode,jdbcType=VARCHAR},
+      PUNISHREGIONCODE = #{punishregioncode,jdbcType=VARCHAR},
+      LOCKSTATE = #{lockstate,jdbcType=VARCHAR},
+      LOCKISINTB = #{lockisintb,jdbcType=VARCHAR},
+      LOCKNUM = #{locknum,jdbcType=DECIMAL},
+      UNLOCKSTATE = #{unlockstate,jdbcType=VARCHAR},
+      UNLOCKISINTB = #{unlockisintb,jdbcType=VARCHAR},
+      UNLOCKNUM = #{unlocknum,jdbcType=DECIMAL},
+      FLOWCODE = #{flowcode,jdbcType=VARCHAR},
+      SFJA = #{sfja,jdbcType=VARCHAR},
+      SJLY = #{sjly,jdbcType=VARCHAR},
+      JSZH = #{jszh,jdbcType=VARCHAR},
+      ZNJ = #{znj,jdbcType=DECIMAL},
+      JKFS = #{jkfs,jdbcType=VARCHAR},
+      JKRQ = #{jkrq,jdbcType=DATE},
+      CLR = #{clr,jdbcType=VARCHAR},
+      CLSJ = #{clsj,jdbcType=DATE},
+      CLBJ = #{clbj,jdbcType=VARCHAR},
+      JKBJ = #{jkbj,jdbcType=VARCHAR},
+      JMZNJBJ = #{jmznjbj,jdbcType=VARCHAR},
+      UPDATETIME = #{updatetime,jdbcType=DATE},
+      JAR = #{jar,jdbcType=VARCHAR},
+      JASJ = #{jasj,jdbcType=DATE},
+      CLFS = #{clfs,jdbcType=CHAR},
+      JLLX = #{jllx,jdbcType=CHAR},
+      DELETETIME = #{deletetime,jdbcType=DATE},
+      JKQD = #{jkqd,jdbcType=VARCHAR},
+      TZBJ = #{tzbj,jdbcType=VARCHAR},
+      TZRQ = #{tzrq,jdbcType=DATE},
+      ROADCODE = #{roadcode,jdbcType=VARCHAR},
+      ROADNAME = #{roadname,jdbcType=VARCHAR},
+      LRR = #{lrr,jdbcType=VARCHAR},
+      LRSJ = #{lrsj,jdbcType=DATE},
+      BZ = #{bz,jdbcType=VARCHAR},
+      LOCKERROR = #{lockerror,jdbcType=VARCHAR},
+      LOCKTIME = #{locktime,jdbcType=DATE},
+      UNLOCKERROR = #{unlockerror,jdbcType=VARCHAR},
+      UNLOCKTIME = #{unlocktime,jdbcType=DATE},
+      DSR = #{dsr,jdbcType=VARCHAR},
+      LXDH = #{lxdh,jdbcType=VARCHAR},
+      XXDZ = #{xxdz,jdbcType=VARCHAR},
+      DSRXXDZ = #{dsrxxdz,jdbcType=VARCHAR},
+      LOCKZDCS = #{lockzdcs,jdbcType=DECIMAL},
+      UNLOCKZDCS = #{unlockzdcs,jdbcType=DECIMAL},
+      JAFS = #{jafs,jdbcType=VARCHAR},
+      INVOICEPID = #{invoicepid,jdbcType=VARCHAR}
+    where VIOID = #{vioid,jdbcType=DECIMAL}
+  </update>
+</mapper>

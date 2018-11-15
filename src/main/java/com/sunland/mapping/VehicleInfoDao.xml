@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunland.dao.IVehicleInfoDao">
+    <resultMap id="BaseResultMap" type="com.sunland.pojo.VehicleInfo">
+        <id column="LSH" jdbcType="VARCHAR" property="lsh"/>
+        <result column="HPZL" jdbcType="CHAR" property="hpzl"/>
+        <result column="HPHM" jdbcType="VARCHAR" property="hphm"/>
+        <result column="CLPP1" jdbcType="VARCHAR" property="clpp1"/>
+        <result column="CLXH" jdbcType="VARCHAR" property="clxh"/>
+        <result column="CLSBDH" jdbcType="VARCHAR" property="clsbdh"/>
+        <result column="FDJH" jdbcType="VARCHAR" property="fdjh"/>
+        <result column="CLLX" jdbcType="CHAR" property="cllx"/>
+        <result column="CSYS" jdbcType="VARCHAR" property="csys"/>
+        <result column="SYXZ" jdbcType="CHAR" property="syxz"/>
+        <result column="SFZMHM" jdbcType="VARCHAR" property="sfzmhm"/>
+        <result column="SFZMMC" jdbcType="CHAR" property="sfzmmc"/>
+        <result column="SYR" jdbcType="VARCHAR" property="syr"/>
+        <result column="CCDJRQ" jdbcType="TIMESTAMP" property="ccdjrq"/>
+        <result column="YXQZ" jdbcType="TIMESTAMP" property="yxqz"/>
+        <result column="FDJRQ" jdbcType="TIMESTAMP" property="fdjrq"/>
+        <result column="ZSXZQH" jdbcType="VARCHAR" property="zsxzqh"/>
+        <result column="ZSXXDZ" jdbcType="VARCHAR" property="zsxxdz"/>
+        <result column="YZBM1" jdbcType="VARCHAR" property="yzbm1"/>
+        <result column="LXDH" jdbcType="VARCHAR" property="lxdh"/>
+        <result column="ZZZ" jdbcType="VARCHAR" property="zzz"/>
+        <result column="CZY" jdbcType="VARCHAR" property="czy"/>
+        <result column="IMEI" jdbcType="VARCHAR" property="imei"/>
+        <result column="CXSJ" jdbcType="TIMESTAMP" property="cxsj"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sunland.pojo.VehicleInfo">
+        <result column="ZP" jdbcType="BLOB" property="zp"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    LSH, HPZL, HPHM, CLPP1, CLXH, CLSBDH, FDJH, CLLX, CSYS, SYXZ, SFZMHM, SFZMMC, SYR, 
+    CCDJRQ, YXQZ, FDJRQ, ZSXZQH, ZSXXDZ, YZBM1, LXDH, ZZZ, CZY, IMEI, CXSJ
+  </sql>
+    <sql id="Blob_Column_List">
+    ZP
+  </sql>
+    <select id="selectByHphm" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from VEHICLE_INFO
+        where HPHM = #{hphm,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from VEHICLE_INFO
+        where LSH = #{lsh,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from VEHICLE_INFO
+    where LSH = #{lsh,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.sunland.pojo.VehicleInfo">
+    insert into VEHICLE_INFO (LSH, HPZL, HPHM, 
+      CLPP1, CLXH, CLSBDH, 
+      FDJH, CLLX, CSYS, SYXZ, 
+      SFZMHM, SFZMMC, SYR, CCDJRQ, 
+      YXQZ, FDJRQ, ZSXZQH, ZSXXDZ, 
+      YZBM1, LXDH, ZZZ, CZY, 
+      IMEI, CXSJ, ZP)
+    values (#{lsh,jdbcType=VARCHAR}, #{hpzl,jdbcType=CHAR}, #{hphm,jdbcType=VARCHAR}, 
+      #{clpp1,jdbcType=VARCHAR}, #{clxh,jdbcType=VARCHAR}, #{clsbdh,jdbcType=VARCHAR}, 
+      #{fdjh,jdbcType=VARCHAR}, #{cllx,jdbcType=CHAR}, #{csys,jdbcType=VARCHAR}, #{syxz,jdbcType=CHAR}, 
+      #{sfzmhm,jdbcType=VARCHAR}, #{sfzmmc,jdbcType=CHAR}, #{syr,jdbcType=VARCHAR}, #{ccdjrq,jdbcType=DATE}, 
+      #{yxqz,jdbcType=DATE}, #{fdjrq,jdbcType=DATE}, #{zsxzqh,jdbcType=VARCHAR}, #{zsxxdz,jdbcType=VARCHAR}, 
+      #{yzbm1,jdbcType=VARCHAR}, #{lxdh,jdbcType=VARCHAR}, #{zzz,jdbcType=VARCHAR}, #{czy,jdbcType=VARCHAR}, 
+      #{imei,jdbcType=VARCHAR}, #{cxsj,jdbcType=DATE}, #{zp,jdbcType=BLOB})
+  </insert>
+    <insert id="insertSelective" parameterType="com.sunland.pojo.VehicleInfo">
+        insert into VEHICLE_INFO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="lsh != null">
+                LSH,
+            </if>
+            <if test="hpzl != null">
+                HPZL,
+            </if>
+            <if test="hphm != null">
+                HPHM,
+            </if>
+            <if test="clpp1 != null">
+                CLPP1,
+            </if>
+            <if test="clxh != null">
+                CLXH,
+            </if>
+            <if test="clsbdh != null">
+                CLSBDH,
+            </if>
+            <if test="fdjh != null">
+                FDJH,
+            </if>
+            <if test="cllx != null">
+                CLLX,
+            </if>
+            <if test="csys != null">
+                CSYS,
+            </if>
+            <if test="syxz != null">
+                SYXZ,
+            </if>
+            <if test="sfzmhm != null">
+                SFZMHM,
+            </if>
+            <if test="sfzmmc != null">
+                SFZMMC,
+            </if>
+            <if test="syr != null">
+                SYR,
+            </if>
+            <if test="ccdjrq != null">
+                CCDJRQ,
+            </if>
+            <if test="yxqz != null">
+                YXQZ,
+            </if>
+            <if test="fdjrq != null">
+                FDJRQ,
+            </if>
+            <if test="zsxzqh != null">
+                ZSXZQH,
+            </if>
+            <if test="zsxxdz != null">
+                ZSXXDZ,
+            </if>
+            <if test="yzbm1 != null">
+                YZBM1,
+            </if>
+            <if test="lxdh != null">
+                LXDH,
+            </if>
+            <if test="zzz != null">
+                ZZZ,
+            </if>
+            <if test="czy != null">
+                CZY,
+            </if>
+            <if test="imei != null">
+                IMEI,
+            </if>
+            <if test="cxsj != null">
+                CXSJ,
+            </if>
+            <if test="zp != null">
+                ZP,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="lsh != null">
+                #{lsh,jdbcType=VARCHAR},
+            </if>
+            <if test="hpzl != null">
+                #{hpzl,jdbcType=CHAR},
+            </if>
+            <if test="hphm != null">
+                #{hphm,jdbcType=VARCHAR},
+            </if>
+            <if test="clpp1 != null">
+                #{clpp1,jdbcType=VARCHAR},
+            </if>
+            <if test="clxh != null">
+                #{clxh,jdbcType=VARCHAR},
+            </if>
+            <if test="clsbdh != null">
+                #{clsbdh,jdbcType=VARCHAR},
+            </if>
+            <if test="fdjh != null">
+                #{fdjh,jdbcType=VARCHAR},
+            </if>
+            <if test="cllx != null">
+                #{cllx,jdbcType=CHAR},
+            </if>
+            <if test="csys != null">
+                #{csys,jdbcType=VARCHAR},
+            </if>
+            <if test="syxz != null">
+                #{syxz,jdbcType=CHAR},
+            </if>
+            <if test="sfzmhm != null">
+                #{sfzmhm,jdbcType=VARCHAR},
+            </if>
+            <if test="sfzmmc != null">
+                #{sfzmmc,jdbcType=CHAR},
+            </if>
+            <if test="syr != null">
+                #{syr,jdbcType=VARCHAR},
+            </if>
+            <if test="ccdjrq != null">
+                #{ccdjrq,jdbcType=DATE},
+            </if>
+            <if test="yxqz != null">
+                #{yxqz,jdbcType=DATE},
+            </if>
+            <if test="fdjrq != null">
+                #{fdjrq,jdbcType=DATE},
+            </if>
+            <if test="zsxzqh != null">
+                #{zsxzqh,jdbcType=VARCHAR},
+            </if>
+            <if test="zsxxdz != null">
+                #{zsxxdz,jdbcType=VARCHAR},
+            </if>
+            <if test="yzbm1 != null">
+                #{yzbm1,jdbcType=VARCHAR},
+            </if>
+            <if test="lxdh != null">
+                #{lxdh,jdbcType=VARCHAR},
+            </if>
+            <if test="zzz != null">
+                #{zzz,jdbcType=VARCHAR},
+            </if>
+            <if test="czy != null">
+                #{czy,jdbcType=VARCHAR},
+            </if>
+            <if test="imei != null">
+                #{imei,jdbcType=VARCHAR},
+            </if>
+            <if test="cxsj != null">
+                #{cxsj,jdbcType=DATE},
+            </if>
+            <if test="zp != null">
+                #{zp,jdbcType=BLOB},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sunland.pojo.VehicleInfo">
+        update VEHICLE_INFO
+        <set>
+            <if test="hpzl != null">
+                HPZL = #{hpzl,jdbcType=CHAR},
+            </if>
+            <if test="hphm != null">
+                HPHM = #{hphm,jdbcType=VARCHAR},
+            </if>
+            <if test="clpp1 != null">
+                CLPP1 = #{clpp1,jdbcType=VARCHAR},
+            </if>
+            <if test="clxh != null">
+                CLXH = #{clxh,jdbcType=VARCHAR},
+            </if>
+            <if test="clsbdh != null">
+                CLSBDH = #{clsbdh,jdbcType=VARCHAR},
+            </if>
+            <if test="fdjh != null">
+                FDJH = #{fdjh,jdbcType=VARCHAR},
+            </if>
+            <if test="cllx != null">
+                CLLX = #{cllx,jdbcType=CHAR},
+            </if>
+            <if test="csys != null">
+                CSYS = #{csys,jdbcType=VARCHAR},
+            </if>
+            <if test="syxz != null">
+                SYXZ = #{syxz,jdbcType=CHAR},
+            </if>
+            <if test="sfzmhm != null">
+                SFZMHM = #{sfzmhm,jdbcType=VARCHAR},
+            </if>
+            <if test="sfzmmc != null">
+                SFZMMC = #{sfzmmc,jdbcType=CHAR},
+            </if>
+            <if test="syr != null">
+                SYR = #{syr,jdbcType=VARCHAR},
+            </if>
+            <if test="ccdjrq != null">
+                CCDJRQ = #{ccdjrq,jdbcType=DATE},
+            </if>
+            <if test="yxqz != null">
+                YXQZ = #{yxqz,jdbcType=DATE},
+            </if>
+            <if test="fdjrq != null">
+                FDJRQ = #{fdjrq,jdbcType=DATE},
+            </if>
+            <if test="zsxzqh != null">
+                ZSXZQH = #{zsxzqh,jdbcType=VARCHAR},
+            </if>
+            <if test="zsxxdz != null">
+                ZSXXDZ = #{zsxxdz,jdbcType=VARCHAR},
+            </if>
+            <if test="yzbm1 != null">
+                YZBM1 = #{yzbm1,jdbcType=VARCHAR},
+            </if>
+            <if test="lxdh != null">
+                LXDH = #{lxdh,jdbcType=VARCHAR},
+            </if>
+            <if test="zzz != null">
+                ZZZ = #{zzz,jdbcType=VARCHAR},
+            </if>
+            <if test="czy != null">
+                CZY = #{czy,jdbcType=VARCHAR},
+            </if>
+            <if test="imei != null">
+                IMEI = #{imei,jdbcType=VARCHAR},
+            </if>
+            <if test="cxsj != null">
+                CXSJ = #{cxsj,jdbcType=DATE},
+            </if>
+            <if test="zp != null">
+                ZP = #{zp,jdbcType=BLOB},
+            </if>
+        </set>
+        where LSH = #{lsh,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sunland.pojo.VehicleInfo">
+    update VEHICLE_INFO
+    set HPZL = #{hpzl,jdbcType=CHAR},
+      HPHM = #{hphm,jdbcType=VARCHAR},
+      CLPP1 = #{clpp1,jdbcType=VARCHAR},
+      CLXH = #{clxh,jdbcType=VARCHAR},
+      CLSBDH = #{clsbdh,jdbcType=VARCHAR},
+      FDJH = #{fdjh,jdbcType=VARCHAR},
+      CLLX = #{cllx,jdbcType=CHAR},
+      CSYS = #{csys,jdbcType=VARCHAR},
+      SYXZ = #{syxz,jdbcType=CHAR},
+      SFZMHM = #{sfzmhm,jdbcType=VARCHAR},
+      SFZMMC = #{sfzmmc,jdbcType=CHAR},
+      SYR = #{syr,jdbcType=VARCHAR},
+      CCDJRQ = #{ccdjrq,jdbcType=DATE},
+      YXQZ = #{yxqz,jdbcType=DATE},
+      FDJRQ = #{fdjrq,jdbcType=DATE},
+      ZSXZQH = #{zsxzqh,jdbcType=VARCHAR},
+      ZSXXDZ = #{zsxxdz,jdbcType=VARCHAR},
+      YZBM1 = #{yzbm1,jdbcType=VARCHAR},
+      LXDH = #{lxdh,jdbcType=VARCHAR},
+      ZZZ = #{zzz,jdbcType=VARCHAR},
+      CZY = #{czy,jdbcType=VARCHAR},
+      IMEI = #{imei,jdbcType=VARCHAR},
+      CXSJ = #{cxsj,jdbcType=DATE},
+      ZP = #{zp,jdbcType=BLOB}
+    where LSH = #{lsh,jdbcType=VARCHAR}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.sunland.pojo.VehicleInfo">
+    update VEHICLE_INFO
+    set HPZL = #{hpzl,jdbcType=CHAR},
+      HPHM = #{hphm,jdbcType=VARCHAR},
+      CLPP1 = #{clpp1,jdbcType=VARCHAR},
+      CLXH = #{clxh,jdbcType=VARCHAR},
+      CLSBDH = #{clsbdh,jdbcType=VARCHAR},
+      FDJH = #{fdjh,jdbcType=VARCHAR},
+      CLLX = #{cllx,jdbcType=CHAR},
+      CSYS = #{csys,jdbcType=VARCHAR},
+      SYXZ = #{syxz,jdbcType=CHAR},
+      SFZMHM = #{sfzmhm,jdbcType=VARCHAR},
+      SFZMMC = #{sfzmmc,jdbcType=CHAR},
+      SYR = #{syr,jdbcType=VARCHAR},
+      CCDJRQ = #{ccdjrq,jdbcType=DATE},
+      YXQZ = #{yxqz,jdbcType=DATE},
+      FDJRQ = #{fdjrq,jdbcType=DATE},
+      ZSXZQH = #{zsxzqh,jdbcType=VARCHAR},
+      ZSXXDZ = #{zsxxdz,jdbcType=VARCHAR},
+      YZBM1 = #{yzbm1,jdbcType=VARCHAR},
+      LXDH = #{lxdh,jdbcType=VARCHAR},
+      ZZZ = #{zzz,jdbcType=VARCHAR},
+      CZY = #{czy,jdbcType=VARCHAR},
+      IMEI = #{imei,jdbcType=VARCHAR},
+      CXSJ = #{cxsj,jdbcType=DATE}
+    where LSH = #{lsh,jdbcType=VARCHAR}
+  </update>
+</mapper>

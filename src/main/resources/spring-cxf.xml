@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://cxf.apache.org/jaxws
+       http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+    <!--<import resource="classpath:META-INF/cxf/cxf-extension-xml.xml"/>-->
+
+    <bean id="ServiceImpl" class="com.sunland.webservice.impl.WebServiceImpl"/>
+    <jaxws:endpoint id="financeServiceWsdl" implementor="#ServiceImpl" address="/vioService">
+        <jaxws:inInterceptors>
+            <bean class="com.sunland.webservice.WebServiceInterceptor"/>
+        </jaxws:inInterceptors>
+    </jaxws:endpoint>
+
+    <!--<bean id="internalServiceImpl" class="com.sunland.webservice.impl.InternalWebServiceImpl"/>-->
+    <!--<jaxws:endpoint id="internalServiceWsdl" implementor="#internalServiceImpl" address="/internalService">-->
+    <!--<jaxws:inInterceptors>-->
+    <!--<bean class="com.sunland.webservice.WebServiceInterceptor"/>-->
+    <!--</jaxws:inInterceptors>-->
+    <!--</jaxws:endpoint>-->
+
+</beans>

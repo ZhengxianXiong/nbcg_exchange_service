@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- eg: 两种方式都可以进行数据初始化 new -->
+    <!-- 1. 定义listener -->
+    <!--<bean class="com.sunland.listener.InitDataListener"/>-->
+
+    <!--&lt;!&ndash; 2. 初始化写在 init-method 中 &ndash;&gt;-->
+    <!--<bean class="com.sunland.utils.ParamUtil" init-method="initParam"/>-->
+    <!--<bean class="com.sunland.utils.ParamUtil" init-method="initChit"/>-->
+
+    <!--&lt;!&ndash;定时器 Start&ndash;&gt;-->
+    <!--&lt;!&ndash;http://www.cnblogs.com/longshiyVip/p/5043860.html&ndash;&gt;-->
+    <!--&lt;!&ndash;1、业务类的配置&ndash;&gt;-->
+    <!--<bean id="taskService" class="com.sunland.service.impl.TaskServiceImpl" />-->
+
+    <!--&lt;!&ndash;2、JobDetail的配置&ndash;&gt;-->
+    <!--<bean id="autoCheckDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+    <!--<property name="targetObject" ref="taskService" />-->
+    <!--<property name="targetMethod" value="sendAutoCheck" />-->
+    <!--<property name="concurrent" value="false" />-->
+    <!--&lt;!&ndash; 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 &ndash;&gt;-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;3、Trigger的配置&ndash;&gt;-->
+    <!--&lt;!&ndash;说明：Scheduler包含一个Trigger列表，每个Trigger表示一个作业。&ndash;&gt;-->
+    <!--<bean id="checkTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
+    <!--<property name="jobDetail" ref="autoCheckDetail" />-->
+    <!--<property name="cronExpression" value="0 30 23 * * ?" />-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;4、Scheduler的配置&ndash;&gt;-->
+    <!--<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->
+    <!--<property name="triggers">-->
+    <!--<list>-->
+    <!--<ref bean="checkTrigger"/>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--<property name="autoStartup" value="true"/>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;定时器 End&ndash;&gt;-->
+</beans>
